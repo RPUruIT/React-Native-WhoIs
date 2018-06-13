@@ -1,9 +1,9 @@
 import React from 'react';
 import {AppRegistry,Text,View,ListView,TouchableHighlight, StyleSheet} from 'react-native';
 import {PropTypes} from 'prop-types';
+import SearchBar from 'react-native-searchbar';
 
 import UserToHuntRow from './UserToHuntRow'
-import Search from './Search'
 
 const styles = StyleSheet.create({
     container: {
@@ -35,18 +35,25 @@ export default class UsersToHuntList extends React.Component{
         const ds = new ListView.DataSource({
             rowHasChanged:(r1,r2)=> r1 !== r2
         });
-
         this.state={
             dataSource:ds.cloneWithRows(props.usersToHunt)
         }
+        this.handleResults = this.handleResults.bind(this);
+        this.setUsersToHunt = this.setUsersToHunt.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
-        const dataSource = 
-            this.state.dataSource.cloneWithRows(nextProps.usersToHunt);
-        this.setState({dataSource})
+        this.setUsersToHunt(nextProps.usersToHunt)
     }
 
+    setUsersToHunt(usersToHunt){
+        const dataSource = this.state.dataSource.cloneWithRows(usersToHunt);
+        this.setState({dataSource});
+    }
+
+    handleResults(results) {
+        this.setUsersToHunt(results);
+    }
     renderRow(userToHunt){
         return(
             <UserToHuntRow 
@@ -58,7 +65,12 @@ export default class UsersToHuntList extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-            <Search/>
+                <SearchBar
+                    ref={(ref) => this.searchBar = ref}
+                    data={this.props.usersToHunt}
+                    handleResults={this.handleResults}
+                    showOnLoad
+                />
                 <ListView 
                     key={this.props.usersToHunt}
                     dataSource={this.state.dataSource}

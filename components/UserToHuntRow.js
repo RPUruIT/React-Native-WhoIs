@@ -19,24 +19,24 @@ const styles = StyleSheet.create({
     }
   });
 
-export default class TaskRow extends React.Component{
+export default class UserToHuntRow extends React.Component{
     render(){
         return(
             <View style={styles.container}>
                 <TouchableHighlight
                         onPress={this.props.onRowDetails}>
-                        <Text style={styles.label}>{this.props.todo.task}</Text>
+                        <Text style={styles.label}>{this.props.userToHunt.name}</Text>
                </TouchableHighlight>
             </View>
         );
     }
 }
 
-TaskRow.PropTypes={
+UserToHuntRow.PropTypes={
     onRowDetails:PropTypes.func.isRequired,
-    todo:PropTypes.shape({
-        task:PropTypes.string.isRequired
+    userToHunt:PropTypes.shape({
+        name:PropTypes.string.isRequired
     }).isRequired,
 }
 
-AppRegistry.registerComponent("WhoIs",()=>TaskRow);
+AppRegistry.registerComponent("WhoIs",()=>UserToHuntRow);

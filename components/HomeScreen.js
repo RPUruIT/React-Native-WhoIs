@@ -1,8 +1,7 @@
 import React from 'react';
 import {AppRegistry,Text,Button,StyleSheet} from 'react-native';
-
-import TaskList from './TaskList'
-import store from '../todoStore'
+import UsersToHuntList from './UsersToHuntList'
+import usersToHuntStore from '../usersToHuntStore'
 
 const styles = StyleSheet.create({
     navBar: {
@@ -10,29 +9,41 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'orange',
+      backgroundColor: 'red',
     },
     navTitle: {
       color: 'orange',
     }
   })
 
+console.disableYellowBox = true;//in order to dismiss warning
+
 export default class HomeScreen extends React.Component{
     constructor(props,context){
         super(props,context);
-        this.state=store.getState();
+        this.state = usersToHuntStore.getState();
 
-        store.subscribe(()=>{
-          this.setState(store.getState())
+        usersToHuntStore.subscribe(()=>{
+          this.setState(usersToHuntStore.getState())
         });
     }
+    
+    componentWillMount = async () => {
+      const response = await fetch('http://172.20.3.161/users')
+      const users = await response.json();
+      usersToHuntStore.dispatch({
+        type:'INIT',
+        users
+      })
+    }
+
     static navigationOptions = {
         headerTitle: <Text>WHO IS</Text>,
         headerRight: (
           <Button
             onPress={() => alert('Who is who?')}
             title="Info"
-            color="orange"
+            color="#1ed760"
           />
         )
     }
@@ -40,21 +51,13 @@ export default class HomeScreen extends React.Component{
       
     }
     onAdd(){
-      /*this.props.navigation.addListener('willFocus',
-          ()=>{
-            alert(JSON.stringify(this.props.navigation.state.params))}
-      );*/
-       /*
-      this.state.todos.push({task:task});
-      this.setState({todos:this.state.todos});
-      */
       this.props.navigation.navigate("AddTask")
     }
     render(){
-        return (<TaskList 
+        return (<UsersToHuntList 
             onAdd={this.onAdd.bind(this)}
             onRowDetails={this.onRowDetails.bind(this)}
-            todos={this.state.todos}/>)
+            usersToHunt={this.state.usersToHunt}/>)
     }
     
 }

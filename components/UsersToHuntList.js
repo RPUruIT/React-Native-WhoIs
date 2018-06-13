@@ -2,7 +2,8 @@ import React from 'react';
 import {AppRegistry,Text,View,ListView,TouchableHighlight, StyleSheet} from 'react-native';
 import {PropTypes} from 'prop-types';
 
-import TaskRow from './TaskRow'
+import UserToHuntRow from './UserToHuntRow'
+import Search from './Search'
 
 const styles = StyleSheet.create({
     container: {
@@ -14,9 +15,9 @@ const styles = StyleSheet.create({
     },
     button: {
         height:50,
-        borderColor:'orange',
+        borderColor:'#1ed760',
         borderWidth:2,
-        backgroundColor:'orange',
+        backgroundColor:'#1ed760',
         margin:20,
         justifyContent:'center',
         alignItems:'center'
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class TaskList extends React.Component{
+export default class UsersToHuntList extends React.Component{
     constructor(props,context){
         super(props,context);
         const ds = new ListView.DataSource({
@@ -36,42 +37,46 @@ export default class TaskList extends React.Component{
         });
 
         this.state={
-            dataSource:ds.cloneWithRows(props.todos)
+            dataSource:ds.cloneWithRows(props.usersToHunt)
         }
     }
 
     componentWillReceiveProps(nextProps){
-        const dataSource = this.state.dataSource.cloneWithRows(nextProps.todos);
+        const dataSource = 
+            this.state.dataSource.cloneWithRows(nextProps.usersToHunt);
         this.setState({dataSource})
     }
 
-    renderRow(todo){
+    renderRow(userToHunt){
         return(
-            <TaskRow onRowDetails={this.props.onRowDetails} todo={todo}/>
+            <UserToHuntRow 
+                onRowDetails={this.props.onRowDetails} 
+                userToHunt={userToHunt}/>
         )
     }
 
     render(){
         return(
             <View style={styles.container}>
+            <Search/>
                 <ListView 
-                    key={this.props.todos}
+                    key={this.props.usersToHunt}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
-                    <TouchableHighlight
-                            onPress={this.props.onAdd} 
-                            style={styles.button}>
+                <TouchableHighlight
+                        onPress={this.props.onAdd} 
+                        style={styles.button}>
                         <Text style={styles.buttonText}>Add One</Text>
-                    </TouchableHighlight>
+                </TouchableHighlight>
             </View>
         );
     }
 }
 
-TaskList.PropTypes = {
+UsersToHuntList.PropTypes = {
     onRowDetails:PropTypes.func.isRequired,
     onAdd:PropTypes.func.isRequired,
-    todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    usersToHunt: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-AppRegistry.registerComponent("WhoIs",()=>TaskList);
+AppRegistry.registerComponent("WhoIs",()=>UsersToHuntList);

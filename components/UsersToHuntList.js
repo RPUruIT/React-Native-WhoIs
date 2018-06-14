@@ -2,6 +2,7 @@ import React from 'react';
 import {AppRegistry,Platform,Text,View,ListView,TouchableHighlight, StyleSheet} from 'react-native';
 import {PropTypes} from 'prop-types';
 import SearchBar from 'react-native-searchbar';
+import LinearGradient from 'react-native-linear-gradient';
 import renderIf from 'render-if'
 
 import UserToHuntRow from './UserToHuntRow'
@@ -9,7 +10,6 @@ import MainHeaderList from './MainHeaderList';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:"#1ed760",
         flex:1,
         justifyContent:"flex-start",
         paddingTop:Platform.OS==='ios'?25:0,
@@ -80,9 +80,10 @@ export default class UsersToHuntList extends React.Component{
     onSearchBack(){
         this.setState(previousState => {
             return { searching: false,
-                    dataSource:previousState.dataSource
+                      dataSource:previousState.dataSource
                 };
         });
+        this.setUsersToHunt(this.props.usersToHunt);
         this.searchBar.hide();
     }
     onSearchClean(){
@@ -90,6 +91,7 @@ export default class UsersToHuntList extends React.Component{
     }
     render(){
         return(
+
             <View style={styles.container}>
                 <SearchBar
                     ref={(ref) => this.searchBar = ref}
@@ -105,14 +107,14 @@ export default class UsersToHuntList extends React.Component{
                         onSearch={this.onSearch.bind(this)}
                     />
                 )}
-
                 <ListView
                     style={styles.usersToHuntList}
                     key={this.props.usersToHunt}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
 
-            </View>
+                </View>
+
         );
     }
 }

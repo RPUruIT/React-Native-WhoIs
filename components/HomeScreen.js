@@ -38,14 +38,15 @@ export default class HomeScreen extends React.Component{
     }
 
     static navigationOptions = {
-        headerTitle: <Text>WHO IS</Text>,
+        header: null
+        /*headerTitle: <Text>WHO IS</Text>,
         headerRight: (
           <Button
             onPress={() => alert('Who is who?')}
             title="Info"
             color="#1ed760"
           />
-        )
+        )*/
     }
     onRowDetails(){
       
@@ -54,12 +55,13 @@ export default class HomeScreen extends React.Component{
       this.props.navigation.navigate("AddTask")
     }
     render(){
-        return (<UsersToHuntList 
-            onAdd={this.onAdd.bind(this)}
-            onRowDetails={this.onRowDetails.bind(this)}
-            usersToHunt={this.state.usersToHunt}/>)
+        return (
+          <UsersToHuntList 
+          onAdd={this.onAdd.bind(this)}
+          onRowDetails={this.onRowDetails.bind(this)}
+          usersToHunt={this.state.usersToHunt}/>
+        )
     }
-    
 }
 
 AppRegistry.registerComponent("WhoIs",()=>HomeScreen);

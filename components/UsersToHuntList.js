@@ -1,17 +1,21 @@
 import React from 'react';
-import {AppRegistry,Text,View,ListView,TouchableHighlight, StyleSheet} from 'react-native';
+import {AppRegistry,Platform,Text,View,ListView,TouchableHighlight, StyleSheet} from 'react-native';
 import {PropTypes} from 'prop-types';
 import SearchBar from 'react-native-searchbar';
+import renderIf from 'render-if'
 
 import UserToHuntRow from './UserToHuntRow'
+import MainHeaderList from './MainHeaderList';
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop:40,
         backgroundColor:"#F7F7F7",
         flex:1,
-        justifyContent:"flex-start"
-
+        justifyContent:"flex-start",
+        paddingTop:Platform.OS==='ios'?25:0,
+    },
+    usersToHuntList:{
+        paddingTop:20,
     },
     button: {
         height:50,
@@ -36,9 +40,9 @@ export default class UsersToHuntList extends React.Component{
             rowHasChanged:(r1,r2)=> r1 !== r2
         });
         this.state={
-            dataSource:ds.cloneWithRows(props.usersToHunt)
+            dataSource:ds.cloneWithRows(props.usersToHunt),
+            searching:false,
         }
-        this.handleResults = this.handleResults.bind(this);
         this.setUsersToHunt = this.setUsersToHunt.bind(this);
     }
 
@@ -48,11 +52,12 @@ export default class UsersToHuntList extends React.Component{
 
     setUsersToHunt(usersToHunt){
         const dataSource = this.state.dataSource.cloneWithRows(usersToHunt);
-        this.setState({dataSource});
-    }
-
-    handleResults(results) {
-        this.setUsersToHunt(results);
+        this.setState(previousState => {
+            return { 
+                searching: previousState.searching,
+                dataSource:dataSource
+            };
+        });
     }
     renderRow(userToHunt){
         return(
@@ -61,29 +66,62 @@ export default class UsersToHuntList extends React.Component{
                 userToHunt={userToHunt}/>
         )
     }
-
+    onSearch(){
+        this.setState(previousState => {
+            return { searching: true,
+                    dataSource:previousState.dataSource
+                };
+        });
+        this.searchBar.show();
+    }
+    handleSearchResults(results) {
+        this.setUsersToHunt(results);
+    }
+    onSearchBack(){
+        this.setState(previousState => {
+            return { searching: false,
+                    dataSource:previousState.dataSource
+                };
+        });
+        this.searchBar.hide();
+    }
+    onSearchClean(){
+        this.setUsersToHunt(this.props.usersToHunt);
+    }
     render(){
         return(
             <View style={styles.container}>
                 <SearchBar
                     ref={(ref) => this.searchBar = ref}
                     data={this.props.usersToHunt}
-                    handleResults={this.handleResults}
-                    showOnLoad
+                    handleResults={this.handleSearchResults.bind(this)}
+                    onBack={this.onSearchBack.bind(this)}
+                    onX={this.onSearchClean.bind(this)}
+                    allDataOnEmptySearch={true}
                 />
-                <ListView 
+                {renderIf(!this.state.searching)(
+                    <MainHeaderList 
+                        ref={(ref) => this.headerList = ref}
+                        onSearch={this.onSearch.bind(this)}
+                    />
+                )}
+
+                <ListView
+                    style={styles.usersToHuntList}
                     key={this.props.usersToHunt}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
-                <TouchableHighlight
-                        onPress={this.props.onAdd} 
-                        style={styles.button}>
-                        <Text style={styles.buttonText}>Add One</Text>
-                </TouchableHighlight>
+
             </View>
         );
     }
 }
+
+/*<TouchableHighlight
+        onPress={this.props.onAdd} 
+        style={styles.button}>
+        <Text style={styles.buttonText}>Add One</Text>
+</TouchableHighlight>*/
 
 UsersToHuntList.PropTypes = {
     onRowDetails:PropTypes.func.isRequired,

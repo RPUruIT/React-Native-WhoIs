@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     score:{
         color:"#FAFAFA",
-        fontSize:17
+        fontSize:10
     }
 });
 
@@ -54,7 +54,7 @@ export default class MainHeaderList extends React.Component{
                     </View>
                 </TouchableOpacity>
                 <View style={styles.containerScore}>
-                    <Text style={styles.score}>Uruiters 10/10</Text>
+                    <Text style={styles.score}>URUITERS 10/10</Text>
                 </View>
             </View>
         )

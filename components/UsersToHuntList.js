@@ -9,7 +9,7 @@ import MainHeaderList from './MainHeaderList';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:"#F7F7F7",
+        backgroundColor:"#1ed760",
         flex:1,
         justifyContent:"flex-start",
         paddingTop:Platform.OS==='ios'?25:0,

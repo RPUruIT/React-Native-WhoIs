@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
     },
     searchContainer:{
         padding:10,
-        backgroundColor:"#1ed760",
+        backgroundColor:"#666",
         borderTopRightRadius:50,
         borderBottomRightRadius:50,
-        width:70
+        width:70,
     },
     search:{
         color:"#FAFAFA",

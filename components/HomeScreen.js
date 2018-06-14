@@ -1,7 +1,9 @@
 import React from 'react';
 import {AppRegistry,Text,Button,StyleSheet} from 'react-native';
-import UsersToHuntList from './UsersToHuntList'
+
 import usersToHuntStore from '../usersToHuntStore'
+
+import UsersToHuntList from './UsersToHuntList'
 
 const styles = StyleSheet.create({
     navBar: {
@@ -49,7 +51,7 @@ export default class HomeScreen extends React.Component{
         )*/
     }
     onRowDetails(){
-      
+        
     }
     onAdd(){
       this.props.navigation.navigate("AddTask")

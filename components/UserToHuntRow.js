@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry,Text,View,StyleSheet,TouchableHighlight} from 'react-native';
+import {AppRegistry,View,Image,Text,StyleSheet,TouchableOpacity} from 'react-native';
 import {PropTypes} from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -22,12 +22,14 @@ const styles = StyleSheet.create({
 export default class UserToHuntRow extends React.Component{
     render(){
         return(
-            <View style={styles.container}>
-                <TouchableHighlight
-                        onPress={this.props.onRowDetails}>
+            <TouchableOpacity onPress={this.props.onRowDetails}>
+                <View style={styles.container}>
+                        <Image 
+                            style={{width: 50, height: 50}} 
+                            source={require('../assets/imgs/Alien-512.png')}></Image>
                         <Text style={styles.label}>{this.props.userToHunt.name}</Text>
-               </TouchableHighlight>
-            </View>
+                </View>
+             </TouchableOpacity>
         );
     }
 }

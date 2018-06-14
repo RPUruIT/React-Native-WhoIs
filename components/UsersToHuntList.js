@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppRegistry,Platform,Text,View,ListView,TouchableHighlight, StyleSheet} from 'react-native';
 import {PropTypes} from 'prop-types';
+
 import SearchBar from 'react-native-searchbar';
 import LinearGradient from 'react-native-linear-gradient';
 import renderIf from 'render-if'

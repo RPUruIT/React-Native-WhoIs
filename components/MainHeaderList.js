@@ -1,6 +1,7 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {AppRegistry,StyleSheet,View,TouchableHighlight,Text} from 'react-native'
+import {AppRegistry,StyleSheet,View,TouchableOpacity,Text} from 'react-native'
+
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import iconFont from 'react-native-vector-icons/Fonts/FontAwesome.ttf';
 const iconFontStyles = `@font-face {
@@ -46,12 +47,12 @@ export default class MainHeaderList extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-                <TouchableHighlight onPress={this.props.onSearch} >
+                <TouchableOpacity onPress={this.props.onSearch} >
                     <View style={styles.searchContainer}>
                         <Icon name="search" size={30} color="#FAFAFA"></Icon>
                         <Text style={styles.search}>Buscar</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
                 <View style={styles.containerScore}>
                     <Text style={styles.score}>Uruiters 10/10</Text>
                 </View>

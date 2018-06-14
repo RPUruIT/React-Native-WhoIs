@@ -59,6 +59,13 @@ export default class UsersToHuntList extends React.Component{
             };
         });
     }
+    changeStatusSearching(searching){
+        this.setState(previousState => {
+            return { searching: searching,
+                    dataSource:previousState.dataSource
+                };
+        });
+    }
     renderRow(userToHunt){
         return(
             <UserToHuntRow 
@@ -67,22 +74,14 @@ export default class UsersToHuntList extends React.Component{
         )
     }
     onSearch(){
-        this.setState(previousState => {
-            return { searching: true,
-                    dataSource:previousState.dataSource
-                };
-        });
+        this.changeStatusSearching(true);
         this.searchBar.show();
     }
     handleSearchResults(results) {
         this.setUsersToHunt(results);
     }
     onSearchBack(){
-        this.setState(previousState => {
-            return { searching: false,
-                      dataSource:previousState.dataSource
-                };
-        });
+        this.changeStatusSearching(false);
         this.setUsersToHunt(this.props.usersToHunt);
         this.searchBar.hide();
     }

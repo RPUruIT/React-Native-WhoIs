@@ -51,7 +51,7 @@ export default class HomeScreen extends React.Component{
         )*/
     }
     onRowDetails(){
-        
+      this.props.navigation.navigate("TakePicture")
     }
     onAdd(){
       this.props.navigation.navigate("AddTask")
@@ -65,5 +65,5 @@ export default class HomeScreen extends React.Component{
         )
     }
 }
-
+          
 AppRegistry.registerComponent("WhoIs",()=>HomeScreen);

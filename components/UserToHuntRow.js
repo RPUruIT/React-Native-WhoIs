@@ -26,7 +26,7 @@ export default class UserToHuntRow extends React.Component{
                 <View style={styles.container}>
                         <Image 
                             style={{width: 50, height: 50}} 
-                            source={require('../assets/imgs/Alien-512.png')}></Image>
+                            source={require('../assets/imgs/user.png')}></Image>
                         <Text style={styles.label}>{this.props.userToHunt.name}</Text>
                 </View>
              </TouchableOpacity>

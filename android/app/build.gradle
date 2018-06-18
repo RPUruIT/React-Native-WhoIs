@@ -137,7 +137,9 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-camera')
+    implementation (project(':react-native-camera')) {
+        exclude group: "com.android.support"
+    }
     compile project(':react-native-linear-gradient')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])

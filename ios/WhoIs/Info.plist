@@ -71,5 +71,7 @@
 	<string>Your message to user when the photo library is accessed for the first time</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Your message to user when the microphone is accessed for the first time</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs to save photos</string>
 </dict>
 </plist>

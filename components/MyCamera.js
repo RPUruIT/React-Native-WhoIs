@@ -1,7 +1,6 @@
 import React from 'react';
 import {AppRegistry,View,Text,StyleSheet} from 'react-native';
-
-import Camera from "react-native-camera"
+import { RNCamera } from 'react-native-camera';
 
 const styles = StyleSheet.create({
     container: {
@@ -25,14 +24,15 @@ const styles = StyleSheet.create({
 
 export default class MyCamera extends React.Component{
 
-    takePicture(){
+    takePicture=async function(){
         try {
+            console.log("voy a sacar foto")
             const options = {
                 /*audio: false,
                 mode: Camera.constants.CaptureMode.still,
                 target: Camera.constants.CaptureTarget.disk*/
               };
-            this.camera.capture()
+            this.camera.takePictureAsync()
                 .then((data) => console.log(data))
                 .catch(err => console.error(err));
         } catch (error) {
@@ -44,19 +44,19 @@ export default class MyCamera extends React.Component{
     render(){
         return (
             <View style={styles.container}>
-                <Camera ref={(cam)=>{this.camera=cam}} 
+                <RNCamera ref={(cam)=>{this.camera=cam}} 
                         style={styles.view} 
-                        aspect={Camera.constants.Aspect.fill}
-                        //type={Camera.constants.Type.front}
-                        captureQuality={Camera.constants.CaptureQuality.medium}
-                        //captureQuality={Camera.constants.CaptureQuality["1080p"]}
+                        //aspect={RNCamera.Constants.Aspect.fill}
+                        //type={RNCamera.Constants.Type.front}
+                        //captureQuality={RNCamera.Constants.CaptureQuality.medium}
+                        //captureQuality={RNCamera.constants.CaptureQuality["1080p"]}
                         >
                         <Text 
                             style={styles.capture}
                             onPress={this.takePicture.bind(this)}>
                             WHISKY!!
                         </Text>
-                </Camera>
+                </RNCamera>
             </View>
         )
     }

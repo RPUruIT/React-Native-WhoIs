@@ -53,13 +53,9 @@ export default class HomeScreen extends React.Component{
     onRowDetails(){
       this.props.navigation.navigate("TakePicture")
     }
-    onAdd(){
-      this.props.navigation.navigate("AddTask")
-    }
     render(){
         return (
           <UsersToHuntList 
-          onAdd={this.onAdd.bind(this)}
           onRowDetails={this.onRowDetails.bind(this)}
           usersToHunt={this.state.usersToHunt}/>
         )

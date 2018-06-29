@@ -11,10 +11,8 @@ function usersToHuntStore(state=defaultState,action){
         case 'INIT':{
             return Object.assign({},state,{usersToHunt:action.users});
         }
-        case 'ADD_USERTOHUNT':
-                return Object.assign({},state,{
-                    usersToHunt:state.usersToHunt.concat([action.user])
-                })
+        case 'USER_HUNTED':
+                return action.user;
         default:
                 return state;
     }

@@ -4,8 +4,7 @@ import {PropTypes} from 'prop-types';
 import RNFetchBlob from 'react-native-fetch-blob';
 
 
-const Blob = RNFetchBlob.polyfill.Blob
-const savedImage = ""
+const savedImage = "file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg"
 //android
 //"file:///storage/emulated/0/DCIM/IMG_20180620_160637.jpg"
 //ios
@@ -37,36 +36,14 @@ export default class UserToHuntRow extends React.Component{
         }
     }
 
-    componentWillMount(){
-        //Blob.build(
-            /*RNFetchBlob.wrap("assets-library://asset/asset.JPG?id=12A1659D-E4BF-4B81-A9F2-EA86A66FBCFF&ext=JPG"))
-            .then((blob) => {
-                //this.state.userImage=blob;
-            })*/
-        /*var uri="assets-library://asset/asset.JPG?id=9CCCA6F6-8428-49EB-9E3E-9266FEBC4731&ext=JPG";
-        RNFetchBlob.fs.readFile(uri, 'base64')
-        .then((data) => {
-            let shareOptions = {
-                title: "React Native Share Example",
-                message: "Check out this photo!",
-                url: `data:image/jpg;base64,${data}`,
-                subject: "Check out this photo!"
-            }
-            let base64Image = 'data:image/jpeg;base64,'+data;
-            this.state = {userImage:base64Image};
-            console.log(this.state.userImage)
-        });*/
-    }
-
     render(){
         return(
             <TouchableOpacity onPress={this.props.onRowDetails}>
                 <View style={styles.container}>
                         <Image 
-                            style={{width: 50, height: 50}} 
+                            style={{width: 60, height: 60, borderRadius:60}} 
                             //source={require('../assets/imgs/user.png')}
-                            //source={requiere('file://assets-library://asset/asset.JPG?id=12A1659D-E4BF-4B81-A9F2-EA86A66FBCFF&ext=JPG')}
-                            source={{uri: this.state.userImage}}
+                            source={{uri:this.state.userImage}}
                             ></Image>
                         <Text style={styles.label}>
                             {this.props.userToHunt.name}

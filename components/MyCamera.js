@@ -1,5 +1,7 @@
 import React from 'react';
 import {AppRegistry,View,Text,StyleSheet} from 'react-native';
+import {PropTypes} from 'prop-types';
+
 import {RNCamera} from 'react-native-camera';
 import Camera from 'react-native-camera';
 
@@ -25,40 +27,21 @@ const styles = StyleSheet.create({
 
 export default class MyCamera extends React.Component{
 
+    constructor(props,context){
+        super(props,context);
+    }
+
     takePicture=async function(){
         try {
             await this.camera.capture()
-                .then((data) => console.log(data))
+                .then((data) => 
+                {   this.props.onPicture(data.path)
+                })
                 .catch(err => console.error(err));
         } catch (error) {
             
         }
     }
-    /*takePicture=async function(){
-        try {
-            this.camera.takePictureAsync()
-                .then((data) => console.log(data))
-                .catch(err => console.error(err));
-        } catch (error) {
-            
-        }
-    }*/
-
-    /*takePicture = async function() {
-        const options = { quality: 0.5,
-                          base64: true};
-        const data = await this.camera.takePictureAsync(options);
-        //  eslint-disable-next-line
-        console.log(data.uri);
-    }*/
-    
-    /*takePicture = async function() {
-        //const options = { quality: 0.5, base64: true };
-        const data = await this.camera.capture();
-        //  eslint-disable-next-line
-        console.log(data.uri);
-    }*/
-
     render(){
         return (
             <View style={styles.container}>
@@ -84,4 +67,8 @@ export default class MyCamera extends React.Component{
 }
 
 AppRegistry.registerComponent("WhoIs",()=>MyCamera);
+
+MyCamera.PropTypes={
+    onPicture:PropTypes.func.isRequired
+}
 

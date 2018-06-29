@@ -127,7 +127,6 @@ export default class UsersToHuntList extends React.Component{
 
 UsersToHuntList.PropTypes = {
     onRowDetails:PropTypes.func.isRequired,
-    onAdd:PropTypes.func.isRequired,
     usersToHunt: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 

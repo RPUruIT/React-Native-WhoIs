@@ -5,13 +5,14 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:"flex-start",
         paddingTop:25,
-        backgroundColor:'pink'
+        padding:10,
+        backgroundColor:'#FFF'
     },
     userImageContainer:{
         flex:1,
         justifyContent: 'center',
-        alignItems: 'center',
-    }
+        alignItems: 'center'
+    },
     usersHuntedImage:{
         width: 120, height: 120, 
         borderRadius:120,
@@ -55,10 +56,11 @@ export default class AddUserToHuntScreen extends React.Component{
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.userImageContainer}>
+                        <Text style={styles.text}>Pepito Perez</Text>
                         <Image 
                             style={styles.usersHuntedImage} 
-                            source={{uri:"file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg"}}
-                            //source={{uri:this.state.userImagePath}}
+                            //source={{uri:"file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg"}}
+                            source={{uri:this.state.userImagePath}}
                             >
                         </Image>
                     </View>

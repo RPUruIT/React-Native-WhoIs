@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry,Text,Button,StyleSheet} from 'react-native';
+import {AppRegistry,AsyncStorage,Text,Button,StyleSheet} from 'react-native';
 
 import usersToHuntStore from '../usersToHuntStore'
 
@@ -26,17 +26,46 @@ export default class HomeScreen extends React.Component{
         this.state = usersToHuntStore.getState();
 
         usersToHuntStore.subscribe(()=>{
-          this.setState(usersToHuntStore.getState())
+          this.setState(usersToHuntStore.getState().usersToHunt)
         });
     }
-    
+
     componentWillMount = async () => {
       const response = await fetch('http://172.20.3.161/users')
       const users = await response.json();
-      usersToHuntStore.dispatch({
-        type:'INIT',
-        users
-      })
+      AsyncStorage.getAllKeys((err, keys) => { 
+
+          AsyncStorage.multiGet(keys, (err, usersOnDB) => {
+
+            let usersCaptured = new Array();
+            usersOnDB.map((result, i, user) => {
+              let userValue = user[i][1];
+              usersCaptured.push(JSON.parse(userValue));
+            });
+
+            let usersNotCaptured = new Array();
+            users.forEach(user => {
+              if(!keys.includes(user._id)){
+                var userNotCaptured = {
+                                        id:user._id,
+                                        name:user.name,
+                                        fileImagePath:"",
+                                        comments:"",
+                                        nickname:""
+                                      };
+                usersNotCaptured.push(userNotCaptured)
+              }
+            });
+
+            var usersToList=usersCaptured.concat(usersNotCaptured);
+            usersToHuntStore.dispatch({
+              type:'INIT',
+              usersToList
+            })
+
+          });
+        }
+      );
     }
 
     static navigationOptions = {
@@ -57,7 +86,7 @@ export default class HomeScreen extends React.Component{
         return (
           <UsersToHuntList 
           onRowDetails={this.onRowDetails.bind(this)}
-          usersToHunt={this.state.usersToHunt}/>
+          usersToHunt={this.state}/>
         )
     }
 }

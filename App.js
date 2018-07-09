@@ -8,10 +8,9 @@ import AddUserToHuntScreen from './components/AddUserToHuntScreen'
 //import DetailsScreen from './components/DetailsScreen'
 
 const RootStack = createStackNavigator({
-  AddUserToHunt:AddUserToHuntScreen,
   Home: HomeScreen,
-  TakePicture:TakePictureScreen,
-
+  AddUserToHunt:AddUserToHuntScreen,
+  TakePicture:TakePictureScreen
   //AddTask:AddTaskScreen,
   //Details:DetailsScreen,
 });

@@ -9,7 +9,7 @@ const defaultState={
 function usersToHuntStore(state=defaultState,action){
     switch(action.type){
         case 'INIT':{
-            return Object.assign({},state,{usersToHunt:action.users});
+            return Object.assign({},state,{usersToHunt:action.usersToList});
         }
         case 'USER_HUNTED':
                 return action.user;

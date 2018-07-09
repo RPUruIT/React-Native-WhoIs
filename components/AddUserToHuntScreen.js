@@ -57,6 +57,7 @@ export default class AddUserToHuntScreen extends React.Component{
         let userToHunt = this.state.userToHunt;
         userToHunt.fileImagePath = this.state.userImagePath;
         console.log("va a salvar"+JSON.stringify(userToHunt))
+        console.log(this.state.userToHunt.comments)
         let storeData= async()=>{
             await AsyncStorage.setItem(
                 userToHunt.id,
@@ -72,8 +73,6 @@ export default class AddUserToHuntScreen extends React.Component{
             
         }
         storeData();
-
-        
     }
 
     render(){
@@ -81,7 +80,7 @@ export default class AddUserToHuntScreen extends React.Component{
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.userImageContainer}>
-                        <Text style={styles.text}>Pepito Perez</Text>
+                        <Text style={styles.text}>{this.state.userToHunt.name}</Text>
                         <Image 
                             style={styles.usersHuntedImage} 
                             //source={{uri:"file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg"}}
@@ -90,9 +89,11 @@ export default class AddUserToHuntScreen extends React.Component{
                         </Image>
                     </View>
                     <Text style={styles.text}>Comentario</Text>
-                    <TextInput style={styles.input}/>
+                    <TextInput style={styles.input}
+                    onChangeText={(text) => this.state.userToHunt.comments=text}/>
                     <Text style={styles.text}>Le dicen</Text>
-                    <TextInput style={styles.input}/>
+                    <TextInput style={styles.input}
+                     onChangeText={(text) =>this.state.userToHunt.nickname=text}/>
                     <TouchableHighlight
                         onPress={this.captureUser}
                         style={[styles.button]}>

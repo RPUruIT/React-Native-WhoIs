@@ -48,14 +48,11 @@ export default class HomeScreen extends React.Component{
                 var userNotCaptured = {
                                         id:user._id,
                                         name:user.name,
-                                        fileImagePath:"file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg",
+                                        fileImagePath:"",
                                         comments:"",
                                         nickname:""
                                       };
                 usersNotCaptured.push(userNotCaptured);
-              }
-              else{
-                console.log(user._id)
               }
             });
 

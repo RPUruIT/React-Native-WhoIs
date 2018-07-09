@@ -1,7 +1,9 @@
 import React from 'react';
 import {AppRegistry,View,Image,Text,StyleSheet,TouchableOpacity} from 'react-native';
 import {PropTypes} from 'prop-types';
+
 import RNFetchBlob from 'react-native-fetch-blob';
+import renderIf from 'render-if'
 
 
 //const savedImage = "file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg"
@@ -21,9 +23,17 @@ const styles = StyleSheet.create({
       justifyContent:'space-between',
       margin:10
     },
-    label:{
+    detailContainer:{
+        flex:1,
+        justifyContent:'flex-end',
+    },
+    labelName:{
         fontSize:20,
         fontWeight:'300',
+    },
+    labelNickName:{
+        fontSize:15,
+        color:"#1ed760"
     }
   });
 
@@ -40,15 +50,28 @@ export default class UserToHuntRow extends React.Component{
         return(
             <TouchableOpacity onPress={this.rowDetails}>
                 <View style={styles.container}>
-                        <Image 
+                        <View style={styles.detailContainer}>
+                            <Text style={styles.labelName}>
+                                {this.props.userToHunt.name}
+                            </Text>
+                            <Text style={styles.labelNickName}>
+                                {this.props.userToHunt.nickname}
+                            </Text>
+                        </View>
+                        {renderIf(this.props.userToHunt.fileImagePath.length==0)(
+                            <Image 
                             style={{width: 60, height: 60, borderRadius:60}} 
-                            //source={require('../assets/imgs/user.png')}
-                            //source={{uri:savedImage}}
+                            source={require('../assets/imgs/user.png')}
+                            ></Image>
+                        )
+                        }
+                         {renderIf(this.props.userToHunt.fileImagePath.length>0)(
+                            <Image 
+                            style={{width: 60, height: 60, borderRadius:60}} 
                             source={{uri:this.props.userToHunt.fileImagePath}}
                             ></Image>
-                        <Text style={styles.label}>
-                            {this.props.userToHunt.name}
-                        </Text>
+                        )
+                        }
                 </View>
              </TouchableOpacity>
         );

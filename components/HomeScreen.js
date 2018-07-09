@@ -26,7 +26,7 @@ export default class HomeScreen extends React.Component{
         this.state = usersToHuntStore.getState();
 
         usersToHuntStore.subscribe(()=>{
-          this.setState(usersToHuntStore.getState().usersToHunt)
+          this.setState(usersToHuntStore.getState())
         });
     }
 
@@ -34,7 +34,6 @@ export default class HomeScreen extends React.Component{
       const response = await fetch('http://172.20.3.161/users')
       const users = await response.json();
       AsyncStorage.getAllKeys((err, keys) => { 
-
           AsyncStorage.multiGet(keys, (err, usersOnDB) => {
 
             let usersCaptured = new Array();
@@ -49,11 +48,14 @@ export default class HomeScreen extends React.Component{
                 var userNotCaptured = {
                                         id:user._id,
                                         name:user.name,
-                                        fileImagePath:"",
+                                        fileImagePath:"file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg",
                                         comments:"",
                                         nickname:""
                                       };
-                usersNotCaptured.push(userNotCaptured)
+                usersNotCaptured.push(userNotCaptured);
+              }
+              else{
+                console.log(user._id)
               }
             });
 
@@ -79,14 +81,15 @@ export default class HomeScreen extends React.Component{
           />
         )*/
     }
-    onRowDetails(){
-      this.props.navigation.navigate("TakePicture")
+    onRowDetails(userToHunt){
+      console.log(userToHunt)
+      this.props.navigation.navigate("TakePicture",userToHunt)
     }
     render(){
         return (
           <UsersToHuntList 
           onRowDetails={this.onRowDetails.bind(this)}
-          usersToHunt={this.state}/>
+          usersToHunt={this.state.usersToHunt}/>
         )
     }
 }

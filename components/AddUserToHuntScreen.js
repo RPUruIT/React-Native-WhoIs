@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry,View,TouchableHighlight,ScrollView,Text,TextInput,Image,StyleSheet,Platform} from 'react-native';
+import {AppRegistry,AsyncStorage,View,TouchableHighlight,ScrollView,Text,TextInput,Image,StyleSheet,Platform} from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex:1,
@@ -50,7 +50,32 @@ export default class AddUserToHuntScreen extends React.Component{
     constructor(props,context){
         super(props,context);
         this.state=this.props.navigation.state.params;
+        this.captureUser=this.captureUser.bind(this);
     }
+
+    captureUser(){
+        let userToHunt = this.state.userToHunt;
+        userToHunt.fileImagePath = this.state.userImagePath;
+        console.log("va a salvar"+JSON.stringify(userToHunt))
+        let storeData= async()=>{
+            await AsyncStorage.setItem(
+                userToHunt.id,
+                JSON.stringify(userToHunt),
+                ()=>{
+                    this.props.navigation.pop();
+                    console.log("guarda bien")
+                },
+                ()=>{
+                    console.log("error al guardar")
+                }
+            );
+            
+        }
+        storeData();
+
+        
+    }
+
     render(){
         return (       
             <ScrollView>
@@ -69,12 +94,12 @@ export default class AddUserToHuntScreen extends React.Component{
                     <Text style={styles.text}>Le dicen</Text>
                     <TextInput style={styles.input}/>
                     <TouchableHighlight
+                        onPress={this.captureUser}
                         style={[styles.button]}>
                         <Text style={styles.buttonText}>
                             Agregar
                         </Text>
                     </TouchableHighlight>
-
                 </View>
             </ScrollView>
         )

@@ -4,7 +4,7 @@ import {PropTypes} from 'prop-types';
 import RNFetchBlob from 'react-native-fetch-blob';
 
 
-const savedImage = "file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg"
+//const savedImage = "file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg"
 //android
 //"file:///storage/emulated/0/DCIM/IMG_20180620_160637.jpg"
 //ios
@@ -31,19 +31,20 @@ export default class UserToHuntRow extends React.Component{
 
     constructor(props,context){
         super(props,context);
-        this.state={
-            userImage:savedImage
-        }
+        this.rowDetails=this.rowDetails.bind(this);
     }
-
+    rowDetails(){
+        this.props.onRowDetails(this.props.userToHunt)
+    }
     render(){
         return(
-            <TouchableOpacity onPress={this.props.onRowDetails}>
+            <TouchableOpacity onPress={this.rowDetails}>
                 <View style={styles.container}>
                         <Image 
                             style={{width: 60, height: 60, borderRadius:60}} 
                             //source={require('../assets/imgs/user.png')}
-                            source={{uri:this.state.userImage}}
+                            //source={{uri:savedImage}}
+                            source={{uri:this.props.userToHunt.fileImagePath}}
                             ></Image>
                         <Text style={styles.label}>
                             {this.props.userToHunt.name}
@@ -56,9 +57,9 @@ export default class UserToHuntRow extends React.Component{
 
 UserToHuntRow.PropTypes={
     onRowDetails:PropTypes.func.isRequired,
-    userToHunt:PropTypes.shape({
+    /*userToHunt:PropTypes.shape({
         name:PropTypes.string.isRequired
-    }).isRequired,
+    }).isRequired,*/
 }
 
 AppRegistry.registerComponent("WhoIs",()=>UserToHuntRow);

@@ -112,7 +112,6 @@ export default class UsersToHuntList extends React.Component{
                     key={this.props.usersToHunt}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
-
                 </View>
 
         );

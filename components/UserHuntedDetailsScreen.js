@@ -40,10 +40,7 @@ export default class UserHuntedDetailsScreen extends React.Component{
     constructor(props,context){
         super(props,context);
         this.state=this.props.navigation.state.params;
-        console.log("COMENTS"+this.state.comments)
-        console.log("NICKNAME"+this.state.nickname)
     }
-
     render(){
         return (       
             <ScrollView style={styles.scrollView}>

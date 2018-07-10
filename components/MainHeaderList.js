@@ -1,6 +1,7 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
 import {AppRegistry,StyleSheet,View,TouchableOpacity,Text} from 'react-native'
+import usersToHuntStore from '../usersToHuntStore'
 
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import iconFont from 'react-native-vector-icons/Fonts/FontAwesome.ttf';
@@ -32,18 +33,44 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems:'flex-end'   
     },
-    score:{
-        color:"#FAFAFA",
-        fontSize:10
-    }
+    
 });
 
 export default class MainHeaderList extends React.Component{
     constructor(props,context){
         super(props,context); 
-
+        this.state={score:"0/0",color:this.getColor(0,0)};
+        usersToHuntStore.subscribe(()=>{  
+            this.setScore();
+        });
+        
     }
 
+    setScore(){
+        var users = usersToHuntStore.getState();
+        var usersHuntedCount=users.usersHunted.length;
+        var totalUsers=usersHuntedCount+users.usersToHunt.length;
+        this.setState(
+            {
+                score:usersHuntedCount+"/"+totalUsers,
+                color:this.getColor(usersHuntedCount,totalUsers)
+            }
+        )
+    }
+
+    getColor(hunted,total){
+        var color="red";
+        var relation=hunted/total;
+        color=relation>=0.9?"green":(relation>=0.3?"yellow":"red");
+        return color;
+    }
+
+    scoreStyle(){
+        return {
+            color:this.state.color,
+            fontSize:10
+        }
+    }
     render(){
         return(
             <View style={styles.container}>
@@ -54,7 +81,7 @@ export default class MainHeaderList extends React.Component{
                     </View>
                 </TouchableOpacity>
                 <View style={styles.containerScore}>
-                    <Text style={styles.score}>URUITERS 10/10</Text>
+                    <Text style={this.scoreStyle()}>URUITERS {this.state.score}</Text>
                 </View>
             </View>
         )

@@ -33,7 +33,9 @@ export default class HomeScreen extends React.Component{
 
     getUsersToList(){
         var users = usersToHuntStore.getState();
-        var usersToList=users.usersHunted.concat(users.usersToHunt); 
+        var usersHunted=users.usersHunted;
+        var usersToHunt=users.usersToHunt;
+        var usersToList=usersHunted.concat(usersToHunt); 
         return {users:usersToList};
     }
 

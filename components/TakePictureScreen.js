@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry,StyleSheet} from 'react-native';
+import {AppRegistry,StyleSheet,Text} from 'react-native';
 
 import MyCamera from './MyCamera'
 
@@ -12,8 +12,12 @@ export default class TakePictureScreen extends React.Component {
     constructor(props,context){
       super(props,context);
       this.state = {userToHunt:this.props.navigation.state.params};
+      this.props.navigation.setParams({ title: this.state.userToHunt.name })
     }
+    static navigationOptions = ({ navigation }) => ({
 
+      title: typeof(navigation.state.params)==='undefined' || typeof(navigation.state.params.title) === 'undefined' ? 'find': navigation.state.params.title
+    });
     onPicture(path){
         
         if(path){

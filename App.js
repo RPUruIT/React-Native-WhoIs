@@ -4,12 +4,14 @@ import {createStackNavigator} from 'react-navigation';
 import HomeScreen from './components/HomeScreen'
 import TakePictureScreen from './components/TakePictureScreen'
 import AddUserToHuntScreen from './components/AddUserToHuntScreen'
+import UserHuntedDetailsScreen from './components/UserHuntedDetailsScreen'
 //import AddTaskScreen from './components/AddTaskScreen'
 //import DetailsScreen from './components/DetailsScreen'
 
 const RootStack = createStackNavigator({
   Home: HomeScreen,
   AddUserToHunt:AddUserToHuntScreen,
+  UserHuntedDetails:UserHuntedDetailsScreen,
   TakePicture:TakePictureScreen
   //AddTask:AddTaskScreen,
   //Details:DetailsScreen,

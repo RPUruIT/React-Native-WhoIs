@@ -88,8 +88,10 @@ export default class HomeScreen extends React.Component{
         )*/
     }
     onRowDetails(userToHunt){
-      console.log(userToHunt)
-      this.props.navigation.navigate("TakePicture",userToHunt)
+      if(userToHunt.fileImagePath=="")
+        this.props.navigation.navigate("TakePicture",userToHunt)
+      else
+        this.props.navigation.navigate("UserHuntedDetails",userToHunt)
     }
     render(){
         return (

@@ -4,12 +4,15 @@ import {AppRegistry,AsyncStorage,View,TouchableHighlight,ScrollView,Text,TextInp
 import usersToHuntStore from '../usersToHuntStore'
 
 const styles = StyleSheet.create({
+    scrollView:{
+        flex:1,
+        backgroundColor:'#FFF'
+    },
     container: {
         flex:1,
         justifyContent:"flex-start",
         paddingTop:25,
-        padding:10,
-        backgroundColor:'#FFF'
+        padding:10
     },
     userImageContainer:{
         flex:1,
@@ -21,7 +24,7 @@ const styles = StyleSheet.create({
         borderRadius:120,
     },
     text:{
-        fontSize:22,
+        fontSize:22
     },
     input:{
         borderWidth:Platform.OS==='ios'?1:0,
@@ -84,7 +87,7 @@ export default class AddUserToHuntScreen extends React.Component{
 
     render(){
         return (       
-            <ScrollView>
+            <ScrollView style={styles.scrollView}>
                 <View style={styles.container}>
                     <View style={styles.userImageContainer}>
                         <Text style={styles.text}>{this.state.userToHunt.name}</Text>

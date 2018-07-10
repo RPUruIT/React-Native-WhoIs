@@ -1,5 +1,8 @@
 import React from 'react';
 import {AppRegistry,AsyncStorage,View,TouchableHighlight,ScrollView,Text,TextInput,Image,StyleSheet,Platform} from 'react-native';
+
+import usersToHuntStore from '../usersToHuntStore'
+
 const styles = StyleSheet.create({
     container: {
         flex:1,
@@ -63,6 +66,10 @@ export default class AddUserToHuntScreen extends React.Component{
                 userToHunt.id,
                 JSON.stringify(userToHunt),
                 ()=>{
+                    usersToHuntStore.dispatch({
+                    type:'USER_HUNTED',
+                    userToHunt
+                    })
                     this.props.navigation.pop();
                     console.log("guarda bien")
                 },

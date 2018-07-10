@@ -23,11 +23,18 @@ console.disableYellowBox = true;//in order to dismiss warning
 export default class HomeScreen extends React.Component{
     constructor(props,context){
         super(props,context);
-        this.state = usersToHuntStore.getState();
 
-        usersToHuntStore.subscribe(()=>{
-          this.setState(usersToHuntStore.getState())
+        this.state=this.getUsersToList();
+
+        usersToHuntStore.subscribe(()=>{      
+          this.setState(this.getUsersToList())
         });
+    }
+
+    getUsersToList(){
+        var users = usersToHuntStore.getState();
+        var usersToList=users.usersHunted.concat(users.usersToHunt); 
+        return {users:usersToList};
     }
 
     componentWillMount = async () => {
@@ -36,13 +43,13 @@ export default class HomeScreen extends React.Component{
       AsyncStorage.getAllKeys((err, keys) => { 
           AsyncStorage.multiGet(keys, (err, usersOnDB) => {
 
-            let usersCaptured = new Array();
+            let usersHunted = new Array();
             usersOnDB.map((result, i, user) => {
               let userValue = user[i][1];
-              usersCaptured.push(JSON.parse(userValue));
+              usersHunted.push(JSON.parse(userValue));
             });
 
-            let usersNotCaptured = new Array();
+            let usersToHunt = new Array();
             users.forEach(user => {
               if(!keys.includes(user._id)){
                 var userNotCaptured = {
@@ -52,14 +59,16 @@ export default class HomeScreen extends React.Component{
                                         comments:"",
                                         nickname:""
                                       };
-                usersNotCaptured.push(userNotCaptured);
+                usersToHunt.push(userNotCaptured);
               }
             });
-
-            var usersToList=usersCaptured.concat(usersNotCaptured);
+            
             usersToHuntStore.dispatch({
               type:'INIT',
-              usersToList
+              users:{
+                usersHunted:usersHunted,
+                usersToHunt:usersToHunt
+              }
             })
 
           });
@@ -86,7 +95,7 @@ export default class HomeScreen extends React.Component{
         return (
           <UsersToHuntList 
           onRowDetails={this.onRowDetails.bind(this)}
-          usersToHunt={this.state.usersToHunt}/>
+          usersToHunt={this.state.users}/>
         )
     }
 }

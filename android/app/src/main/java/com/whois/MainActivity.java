@@ -1,4 +1,4 @@
-package com.whois;
+package com.uruit.whoisrn;
 
 import com.facebook.react.ReactActivity;
 

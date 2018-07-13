@@ -98,7 +98,7 @@ android {
     buildToolsVersion "27.0.0"
 
     defaultConfig {
-        applicationId "com.whois"
+        applicationId "com.uruit.whoisrn"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

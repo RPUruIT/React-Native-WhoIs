@@ -1,4 +1,4 @@
-package com.uruit.whoisrn;
+package com.uruit.rn.whois;
 
 import android.app.Application;
 

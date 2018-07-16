@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppRegistry,AsyncStorage,View,TouchableHighlight,ScrollView,Text,TextInput,Image,StyleSheet,Platform} from 'react-native';
 
+import LinearGradient from 'react-native-linear-gradient';
 import usersToHuntStore from '../usersToHuntStore'
 
 const styles = StyleSheet.create({
@@ -35,12 +36,12 @@ const styles = StyleSheet.create({
         padding:15,
         borderRadius:3
     },
+    touchableButton:{
+        borderRadius:10,
+        margin:20
+    },
     button: {
         height:50,
-        borderColor:'#1ed760',
-        borderWidth:2,
-        backgroundColor:'#1ed760',
-        margin:20,
         justifyContent:'center',
         alignItems:'center'
     },
@@ -106,10 +107,14 @@ export default class AddUserToHuntScreen extends React.Component{
                      onChangeText={(text) =>this.state.userToHunt.nickname=text}/>
                     <TouchableHighlight
                         onPress={this.captureUser}
-                        style={[styles.button]}>
-                        <Text style={styles.buttonText}>
-                            Agregar
-                        </Text>
+                        style={[styles.touchableButton]}>
+                        <LinearGradient 
+                            style={[styles.button]}
+                	        colors={['#5d6664','#1ed760']}>
+                            <Text style={styles.buttonText}>
+                                Agregar
+                            </Text>
+                        </LinearGradient>
                     </TouchableHighlight>
                 </View>
             </ScrollView>

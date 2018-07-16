@@ -7,7 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import renderIf from 'render-if'
 
 import UserToHuntRow from './UserToHuntRow'
-import MainHeaderList from './MainHeaderList';
+import UsersToHuntMainHeaderList from './UsersToHuntMainHeaderList';
 
 const styles = StyleSheet.create({
     container: {
@@ -102,7 +102,7 @@ export default class UsersToHuntList extends React.Component{
                     allDataOnEmptySearch={true}
                 />
                 {renderIf(!this.state.searching)(
-                    <MainHeaderList 
+                    <UsersToHuntMainHeaderList 
                         ref={(ref) => this.headerList = ref}
                         onSearch={this.onSearch.bind(this)}
                     />

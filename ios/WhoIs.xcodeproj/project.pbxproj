@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -54,6 +53,8 @@
 		C9C38729DA8747D793672F34 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 866A9917CAEB40E583AC3357 /* OpenSans-Regular.ttf */; };
 		EE296FB97DCB4A11ABAADAD5 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D95610C7F64CC2B26BB0B7 /* libRNCamera.a */; };
 		EF43E19C6B904F6F88424CB7 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E66DF2E824C48FB8DCCE27E /* FontAwesome.ttf */; };
+		4435F535F7654F89B98EA71B /* raleway.thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 510F11B1F8094F6A99499A5E /* raleway.thin.ttf */; };
+		BB1D388027784B01B72E56EA /* varsity_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A389F50B7B53498BB0A67A9E /* varsity_regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -414,6 +415,8 @@
 		E8EA4DBC396C47489319AD51 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		ED4B49B9204646478FE72E33 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		FF3E27C37B2C45099B29462F /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		510F11B1F8094F6A99499A5E /* raleway.thin.ttf */ = {isa = PBXFileReference; name = "raleway.thin.ttf"; path = "../assets/fonts/raleway.thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A389F50B7B53498BB0A67A9E /* varsity_regular.ttf */ = {isa = PBXFileReference; name = "varsity_regular.ttf"; path = "../assets/fonts/varsity_regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -691,6 +694,8 @@
 				FF3E27C37B2C45099B29462F /* SimpleLineIcons.ttf */,
 				E8EA4DBC396C47489319AD51 /* Zocial.ttf */,
 				866A9917CAEB40E583AC3357 /* OpenSans-Regular.ttf */,
+				510F11B1F8094F6A99499A5E /* raleway.thin.ttf */,
+				A389F50B7B53498BB0A67A9E /* varsity_regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -834,12 +839,13 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 2YQYY93GK2;
+						DevelopmentTeam = 3KP6GWGV7B;
+						ProvisioningStyle = Manual;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 3KP6GWGV7B;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1262,6 +1268,8 @@
 				8E7CA19868004E5B87858166 /* SimpleLineIcons.ttf in Resources */,
 				4E15DE8D9ED04DBE81D4CE62 /* Zocial.ttf in Resources */,
 				C9C38729DA8747D793672F34 /* OpenSans-Regular.ttf in Resources */,
+				4435F535F7654F89B98EA71B /* raleway.thin.ttf in Resources */,
+				BB1D388027784B01B72E56EA /* varsity_regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1380,7 +1388,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 2YQYY93GK2;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3KP6GWGV7B;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1407,6 +1417,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WhoIs.app/WhoIs";
 			};
 			name = Debug;
@@ -1415,8 +1426,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 2YQYY93GK2;
+				DEVELOPMENT_TEAM = 3KP6GWGV7B;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1439,6 +1451,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WhoIs.app/WhoIs";
 			};
 			name = Release;
@@ -1448,7 +1461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 3KP6GWGV7B;
@@ -1468,7 +1481,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uruit.rn.whois;
 				PRODUCT_NAME = WhoIs;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "4ef988b5-7d5b-412f-bf9d-5c1ff9a4af2a";
+				PROVISIONING_PROFILE_SPECIFIER = "WhoIs React Native";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1479,7 +1493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3KP6GWGV7B;
 				HEADER_SEARCH_PATHS = (
@@ -1498,7 +1512,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uruit.rn.whois;
 				PRODUCT_NAME = WhoIs;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "4ef988b5-7d5b-412f-bf9d-5c1ff9a4af2a";
+				PROVISIONING_PROFILE_SPECIFIER = "WhoIs React Native";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

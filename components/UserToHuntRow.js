@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     labelName:{
         fontSize:20,
         fontWeight:'300',
-        //fontFamily:"OpenSans-Regular"
+        //fontFamily:"varsity_regular"
     },
     labelNickName:{
         fontSize:15,
         color:"#1ed760",
-        //fontFamily:"OpenSans-Regular"
+        //fontFamily:"varsity_regular"
     }
   });
 

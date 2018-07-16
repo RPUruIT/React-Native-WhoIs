@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         flexWrap:'wrap',
         alignItems: 'flex-start',
         flexDirection:'row',
-        backgroundColor:'gray'
+        backgroundColor:'#b3b7b6'
     },
     searchContainer:{
         padding:10,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     
 });
 
-export default class MainHeaderList extends React.Component{
+export default class UsersToHuntMainHeaderList extends React.Component{
     constructor(props,context){
         super(props,context); 
         this.state={score:"0/0",color:this.getColor(0,0)};
@@ -61,7 +61,7 @@ export default class MainHeaderList extends React.Component{
     getColor(hunted,total){
         var color="red";
         var relation=hunted/total;
-        color=relation>=0.9?"green":(relation>=0.3?"yellow":"red");
+        color=relation>=0.9?"green":(relation>=0.2?"yellow":"red");
         return color;
     }
 
@@ -89,8 +89,8 @@ export default class MainHeaderList extends React.Component{
 
 }
 
-MainHeaderList.PropTypes = {
+UsersToHuntMainHeaderList.PropTypes = {
     onSearch:PropTypes.func.isRequired
 }
 
-AppRegistry.registerComponent("WhoIs",()=>MainHeaderList);
+AppRegistry.registerComponent("WhoIs",()=>UsersToHuntMainHeaderList);

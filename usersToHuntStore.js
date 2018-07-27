@@ -26,7 +26,8 @@ function usersToHuntStore(state=defaultState,action){
             users.usersToHunt.sort(usersCompare);
 
             state=users; 
-            return state;
+            break;
+            
         }
         case 'USER_HUNTED':{
             var index = state.usersToHunt.findIndex(x=>x.id==action.userToHunt.id);
@@ -35,12 +36,11 @@ function usersToHuntStore(state=defaultState,action){
             state.usersHunted.push(action.userToHunt);
             state.usersHunted.sort(usersCompare);
             state.usersToHunt.sort(usersCompare);
-
-            return state;
+            break;
         }
-        default:
-            return state;
     }
+
+    return state;
 }
 
 export default createStore(usersToHuntStore);

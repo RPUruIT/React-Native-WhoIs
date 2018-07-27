@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry,View,Image,Text,StyleSheet,TouchableOpacity} from 'react-native';
+import {AppRegistry,Platform,View,Image,Text,StyleSheet,TouchableOpacity} from 'react-native';
 import {PropTypes} from 'prop-types';
 
 import RNFetchBlob from 'react-native-fetch-blob';
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     labelName:{
         fontSize:20,
         fontWeight:'300',
-        //fontFamily:"varsity_regular"
+        fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"OpenSans-Regular"
     },
     labelNickName:{
         fontSize:15,
         color:"#1ed760",
-        //fontFamily:"varsity_regular"
+        fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"OpenSans-Regular"
     }
   });
 

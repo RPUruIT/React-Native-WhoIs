@@ -1,6 +1,6 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {AppRegistry,StyleSheet,View,TouchableOpacity,Text} from 'react-native'
+import {AppRegistry,StyleSheet,View,Platform,TouchableOpacity,Text} from 'react-native'
 import usersToHuntStore from '../usersToHuntStore'
 
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         width:70,
     },
     search:{
-        color:"#FAFAFA",
+        color:"#1ed760",
     },
     containerScore:{
         padding:10,
@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems:'flex-end'   
     },
+    label:{
+        fontSize:20,
+        fontWeight: 'bold',
+        fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"OpenSans-Regular"
+    }
     
 });
 
@@ -74,14 +79,14 @@ export default class UsersToHuntMainHeaderList extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-                <TouchableOpacity onPress={this.props.onSearch} >
+                <TouchableOpacity onPress={this.props.onSearch}>
                     <View style={styles.searchContainer}>
-                        <Icon name="search" size={30} color="#FAFAFA"></Icon>
+                        <Icon name="search" size={30} color="#1ed760"></Icon>
                         <Text style={styles.search}>Buscar</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.containerScore}>
-                    <Text style={this.scoreStyle()}>URUITERS {this.state.score}</Text>
+                    <Text style={[this.scoreStyle(),styles.label]}>{this.state.score}</Text>
                 </View>
             </View>
         )

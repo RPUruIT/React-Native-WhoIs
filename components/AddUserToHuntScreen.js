@@ -110,7 +110,8 @@ export default class AddUserToHuntScreen extends React.Component{
                         style={[styles.touchableButton]}>
                         <LinearGradient 
                             style={[styles.button]}
-                	        colors={['#5d6664','#1ed760']}>
+                	        colors={['#1ed760','#9AEE77']}
+                            start={{x: 0.5, y: 0}} end={{x: 1, y: 0}} >
                             <Text style={styles.buttonText}>
                                 Agregar
                             </Text>

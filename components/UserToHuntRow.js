@@ -4,6 +4,7 @@ import {PropTypes} from 'prop-types';
 
 import RNFetchBlob from 'react-native-fetch-blob';
 import renderIf from 'render-if'
+import LinearGradient from 'react-native-linear-gradient';
 
 
 //const savedImage = "file:///storage/emulated/0/Pictures/IMG_20180629_160152.jpg"
@@ -14,27 +15,37 @@ import renderIf from 'render-if'
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#fff',
-      borderWidth:1,
-      borderColor:"#E7E7E7",
-      padding:20,
+      backgroundColor: '#6ED542',
+      padding:15,
       flex:1,
       flexDirection:'row',
       justifyContent:'space-between',
-      margin:10
+      margin:10,
+      borderRadius:10,
     },
     detailContainer:{
         flex:1,
         justifyContent:'flex-end',
     },
+    shadow:{
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
     labelName:{
         fontSize:20,
         fontWeight:'300',
+        color:"white",
         fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"OpenSans-Regular"
     },
     labelNickName:{
         fontSize:15,
-        color:"#1ed760",
+        color:"#f8f8f8",
         fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"OpenSans-Regular"
     }
   });
@@ -48,10 +59,19 @@ export default class UserToHuntRow extends React.Component{
     rowDetails(){
         this.props.onRowDetails(this.props.userToHunt)
     }
+    getColor(){
+        if(this.props.userToHunt.fileImagePath.length==0)
+            return["grey","grey"]
+        else
+            return ['#1ed760','#9AEE77'];
+    }
     render(){
         return(
-            <TouchableOpacity onPress={this.rowDetails}>
-                <View style={styles.container}>
+            <TouchableOpacity onPress={this.rowDetails} activeOpacity={0.7}>
+                <LinearGradient 
+                            style={[styles.container,styles.shadow]}
+                            start={{x: 0.5, y: 0}} end={{x: 1, y: 0}} 
+                	        colors={this.getColor()}>
                         <View style={styles.detailContainer}>
                             <Text style={styles.labelName}>
                                 {this.props.userToHunt.name}
@@ -74,7 +94,8 @@ export default class UserToHuntRow extends React.Component{
                             ></Image>
                         )
                         }
-                </View>
+                 </LinearGradient>
+               
              </TouchableOpacity>
         );
     }

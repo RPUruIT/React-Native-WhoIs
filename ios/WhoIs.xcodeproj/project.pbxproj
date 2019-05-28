@@ -55,6 +55,8 @@
 		EF43E19C6B904F6F88424CB7 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E66DF2E824C48FB8DCCE27E /* FontAwesome.ttf */; };
 		4435F535F7654F89B98EA71B /* raleway.thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 510F11B1F8094F6A99499A5E /* raleway.thin.ttf */; };
 		BB1D388027784B01B72E56EA /* varsity_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A389F50B7B53498BB0A67A9E /* varsity_regular.ttf */; };
+		75290EA9F220477C84FEAA0E /* Comic_Andy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5DA5E2C6FF425FBE293A4D /* Comic_Andy.ttf */; };
+		B0E60C6610E844FF9EB14F91 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A07D0E9977F4891AAA6F588 /* Pacifico-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -417,6 +419,8 @@
 		FF3E27C37B2C45099B29462F /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		510F11B1F8094F6A99499A5E /* raleway.thin.ttf */ = {isa = PBXFileReference; name = "raleway.thin.ttf"; path = "../assets/fonts/raleway.thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A389F50B7B53498BB0A67A9E /* varsity_regular.ttf */ = {isa = PBXFileReference; name = "varsity_regular.ttf"; path = "../assets/fonts/varsity_regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CF5DA5E2C6FF425FBE293A4D /* Comic_Andy.ttf */ = {isa = PBXFileReference; name = "Comic_Andy.ttf"; path = "../assets/fonts/Comic_Andy.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1A07D0E9977F4891AAA6F588 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; name = "Pacifico-Regular.ttf"; path = "../assets/fonts/Pacifico-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -696,6 +700,8 @@
 				866A9917CAEB40E583AC3357 /* OpenSans-Regular.ttf */,
 				510F11B1F8094F6A99499A5E /* raleway.thin.ttf */,
 				A389F50B7B53498BB0A67A9E /* varsity_regular.ttf */,
+				CF5DA5E2C6FF425FBE293A4D /* Comic_Andy.ttf */,
+				1A07D0E9977F4891AAA6F588 /* Pacifico-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1270,6 +1276,8 @@
 				C9C38729DA8747D793672F34 /* OpenSans-Regular.ttf in Resources */,
 				4435F535F7654F89B98EA71B /* raleway.thin.ttf in Resources */,
 				BB1D388027784B01B72E56EA /* varsity_regular.ttf in Resources */,
+				75290EA9F220477C84FEAA0E /* Comic_Andy.ttf in Resources */,
+				B0E60C6610E844FF9EB14F91 /* Pacifico-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

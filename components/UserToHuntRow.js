@@ -84,14 +84,16 @@ export default class UserToHuntRow extends React.Component{
                             <Image 
                             style={{width: 60, height: 60, borderRadius:60}} 
                             source={require('../assets/imgs/user.png')}
-                            ></Image>
+                            />
                         )
                         }
                          {renderIf(this.props.userToHunt.fileImagePath.length>0)(
-                            <Image 
-                            style={{width: 60, height: 60, borderRadius:60}} 
-                            source={{uri:this.props.userToHunt.fileImagePath}}
-                            ></Image>
+                             <TouchableOpacity onPress={()=>this.props.onImageTapped(this.props.userToHunt)} activeOpacity={0.7}>
+                                <Image 
+                                style={{width: 60, height: 60, borderRadius:60}} 
+                                source={{uri:this.props.userToHunt.fileImagePath}}
+                                />
+                            </TouchableOpacity>
                         )
                         }
                  </LinearGradient>

@@ -12,30 +12,44 @@ const iconFontStyles = `@font-face {
 
 const styles = StyleSheet.create({
     container: {
-        flexWrap:'wrap',
         alignItems: 'flex-start',
         flexDirection:'row',
-        backgroundColor:'#b3b7b6'
+        justifyContent:'center',
+        backgroundColor:'#F8FAF8'
+    },
+    title:{
+        fontSize:30,
+        fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"Pacifico-Regular"
+    },
+    shadow:{
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     searchContainer:{
         padding:10,
-        backgroundColor:"#666",
+        backgroundColor:"#1ed760",
         borderTopRightRadius:50,
         borderBottomRightRadius:50,
         width:70,
     },
     search:{
-        color:"#1ed760",
+        color:"white",
     },
     containerScore:{
         padding:10,
         backgroundColor:'transparent',
         flex:1,
+        flexDirection:'column',
         alignItems:'flex-end'   
     },
     label:{
         fontSize:20,
-        fontWeight: 'bold',
         fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"OpenSans-Regular"
     }
     
@@ -44,23 +58,22 @@ const styles = StyleSheet.create({
 export default class UsersToHuntMainHeaderList extends React.Component{
     constructor(props,context){
         super(props,context); 
-        this.state={score:"0/0",color:this.getColor(0,0)};
+        if(!this.state)
+            this.state=this.getScore();
         usersToHuntStore.subscribe(()=>{  
             this.setScore();
         });
-        
     }
-
-    setScore(){
+    setScore(){ 
+        this.setState(this.getScore());  
+    }
+    getScore(){
         var users = usersToHuntStore.getState();
         var usersHuntedCount=users.usersHunted.length;
         var totalUsers=usersHuntedCount+users.usersToHunt.length;
-        this.setState(
-            {
-                score:usersHuntedCount+"/"+totalUsers,
-                color:this.getColor(usersHuntedCount,totalUsers)
-            }
-        )
+
+        return {score:usersHuntedCount+"/"+totalUsers,
+        color:this.getColor(usersHuntedCount,totalUsers)}
     }
 
     getColor(hunted,total){
@@ -72,19 +85,19 @@ export default class UsersToHuntMainHeaderList extends React.Component{
 
     scoreStyle(){
         return {
-            color:this.state.color,
-            fontSize:10
+            color:this.state.color
         }
     }
     render(){
         return(
-            <View style={styles.container}>
-                <TouchableOpacity onPress={this.props.onSearch}>
+            <View style={[styles.container,styles.shadow]}>
+                <TouchableOpacity onPress={this.props.onSearch} activeOpacity={0.7}>
                     <View style={styles.searchContainer}>
-                        <Icon name="search" size={30} color="#1ed760"></Icon>
+                        <Icon name="search" size={30} color="white"></Icon>
                         <Text style={styles.search}>Buscar</Text>
                     </View>
                 </TouchableOpacity>
+                <Text style={styles.title}>Who Is</Text>
                 <View style={styles.containerScore}>
                     <Text style={[this.scoreStyle(),styles.label]}>{this.state.score}</Text>
                 </View>

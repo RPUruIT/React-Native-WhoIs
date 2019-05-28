@@ -1,8 +1,6 @@
 import React from 'react';
 import {AppRegistry,View,Text,StyleSheet} from 'react-native';
 import {PropTypes} from 'prop-types';
-
-import {RNCamera} from 'react-native-camera';
 import Camera from 'react-native-camera';
 
 const styles = StyleSheet.create({

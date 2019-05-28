@@ -8,6 +8,10 @@ import renderIf from 'render-if'
 
 import UserToHuntRow from './UserToHuntRow'
 import UsersToHuntMainHeaderList from './UsersToHuntMainHeaderList';
+import UserHuntedPopup from './UserHuntedPopup';
+
+
+import PopupDialog from 'react-native-popup-dialog';
 
 const styles = StyleSheet.create({
     container: {
@@ -15,22 +19,9 @@ const styles = StyleSheet.create({
         justifyContent:"flex-start",
         paddingTop:Platform.OS==='ios'?25:0,
     },
-    usersToHuntList:{
-        paddingTop:20,
-    },
-    button: {
-        height:50,
-        borderColor:'#1ed760',
-        borderWidth:2,
-        backgroundColor:'#1ed760',
-        margin:20,
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    buttonText:{
-        color:'#FAFAFA',
-        fontSize:20,
-        fontWeight:'600'    
+    popup:{
+        flex:1,
+        height:200,width:200
     }
 });
 
@@ -47,6 +38,13 @@ export default class UsersToHuntList extends React.Component{
         this.setUsersToHunt = this.setUsersToHunt.bind(this);
     }
 
+    getListViewStyle(){
+        
+        if(this.state.searching)
+            return {paddingTop:60}
+        else
+            return {paddingTop:20}
+    }
     componentWillReceiveProps(nextProps){
         this.setUsersToHunt(nextProps.usersToHunt)
     }
@@ -71,7 +69,8 @@ export default class UsersToHuntList extends React.Component{
         return(
             <UserToHuntRow 
                 onRowDetails={this.props.onRowDetails} 
-                userToHunt={userToHunt}/>
+                userToHunt={userToHunt}
+                onImageTapped={this.onImageTapped.bind(this)}/>
         )
     }
     onSearch(){
@@ -89,6 +88,11 @@ export default class UsersToHuntList extends React.Component{
     onSearchClean(){
         this.setUsersToHunt(this.props.usersToHunt);
     }
+
+    onImageTapped(userToHunt){
+        this.popupDialog.show();
+    }
+
     render(){
         return(
 
@@ -103,26 +107,23 @@ export default class UsersToHuntList extends React.Component{
                 />
                 {renderIf(!this.state.searching)(
                     <UsersToHuntMainHeaderList 
-                        ref={(ref) => this.headerList = ref}
                         onSearch={this.onSearch.bind(this)}
                     />
                 )}
                 <ListView
-                    style={styles.usersToHuntList}
+                    style={this.getListViewStyle()}
                     key={this.props.usersToHunt}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
+                <PopupDialog ref={(ref) => { this.popupDialog = ref; }}> 
+                    <UserHuntedPopup style={styles.popup}/> 
+                </PopupDialog>
+                
             </View>
 
         );
     }
 }
-
-/*<TouchableHighlight
-        onPress={this.props.onAdd} 
-        style={styles.button}>
-        <Text style={styles.buttonText}>Add One</Text>
-</TouchableHighlight>*/
 
 UsersToHuntList.PropTypes = {
     onRowDetails:PropTypes.func.isRequired,

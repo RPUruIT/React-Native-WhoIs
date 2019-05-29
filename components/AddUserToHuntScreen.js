@@ -21,11 +21,13 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     usersHuntedImage:{
+        marginTop:20,
         width: 120, height: 120, 
         borderRadius:120,
     },
     text:{
-        fontSize:22
+        fontSize:22,
+        fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"OpenSans-Regular"
     },
     input:{
         borderWidth:Platform.OS==='ios'?1:0,
@@ -43,12 +45,13 @@ const styles = StyleSheet.create({
     button: {
         height:50,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        borderRadius:10
     },
     buttonText:{
         color:'#FAFAFA',
         fontSize:20,
-        fontWeight:'600'    
+        fontWeight:'600'
     }
 });
 

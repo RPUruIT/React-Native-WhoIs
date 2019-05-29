@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
         borderRadius:120,
     },
     text:{
-        fontSize:22
+        fontSize:22,
+        fontFamily:Platform.OS==="ios"?"Avenir-Heavy":"OpenSans-Regular"
     },
     input:{
         borderWidth:Platform.OS==='ios'?1:0,

@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry,Text,View,TouchableHighlight, StyleSheet} from 'react-native';
+import {AppRegistry,Text,View,Image, StyleSheet} from 'react-native';
 import {PropTypes} from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -11,13 +11,12 @@ const styles = StyleSheet.create({
         backgroundColor:'white'
     },
     userImageContainer:{
-        flex:1,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    usersHuntedImage:{
-        width: 160, height: 160, 
-        borderRadius:120,
+    userHuntedImage:{
+        marginTop:20,
+        width: 200, height: 220
     },
     label:{
         fontSize:22
@@ -27,24 +26,25 @@ const styles = StyleSheet.create({
 
 export default class UserHuntedPopup extends React.Component{
     constructor(props,context){
-        super();
+        super(props,context);
+        this.state={ 
+            name: props.userHunted.name,
+            fileImagePath:props.userHunted.fileImagePath
+        };
     }
-    componentWillReceiveProps(nextProps){
-        
-    }
+
     render(){
         return(
         <View style={styles.userImageContainer}>
-                <Text>holaa</Text>
+           <Text style={styles.label}>{this.state.name}</Text>
+           <Image 
+                style={styles.userHuntedImage} 
+                source={{uri:this.state.fileImagePath}}/>
         </View>
         )
     }
 }
 
 AppRegistry.registerComponent("WhoIs",()=>UserHuntedPopup);
-/*            <Text style={styles.label}>{this.state.name}</Text>
-            <Image 
-                style={styles.usersHuntedImage} 
-                source={{uri:this.state.fileImagePath}}
-                >
-            </Image>*/
+/*
+*/

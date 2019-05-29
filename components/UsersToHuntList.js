@@ -1,9 +1,8 @@
 import React from 'react';
-import {AppRegistry,Platform,Text,View,ListView,TouchableHighlight, StyleSheet} from 'react-native';
+import {AppRegistry,Platform,Text,View,ListView,Button,TouchableHighlight, StyleSheet} from 'react-native';
 import {PropTypes} from 'prop-types';
 
 import SearchBar from 'react-native-searchbar';
-import LinearGradient from 'react-native-linear-gradient';
 import renderIf from 'render-if'
 
 import UserToHuntRow from './UserToHuntRow'
@@ -11,7 +10,12 @@ import UsersToHuntMainHeaderList from './UsersToHuntMainHeaderList';
 import UserHuntedPopup from './UserHuntedPopup';
 
 
-import PopupDialog from 'react-native-popup-dialog';
+import Dialog,{
+    DialogContent,
+    ScaleAnimation,
+  } from 'react-native-popup-dialog';  
+
+const scaleAnimation = new ScaleAnimation();  
 
 const styles = StyleSheet.create({
     container: {
@@ -34,6 +38,7 @@ export default class UsersToHuntList extends React.Component{
         this.state={
             dataSource:ds.cloneWithRows(props.usersToHunt),
             searching:false,
+            showDialog:false
         }
         this.setUsersToHunt = this.setUsersToHunt.bind(this);
     }
@@ -89,8 +94,9 @@ export default class UsersToHuntList extends React.Component{
         this.setUsersToHunt(this.props.usersToHunt);
     }
 
-    onImageTapped(userToHunt){
-        this.popupDialog.show();
+    onImageTapped(userHunted){
+        
+        this.setState({ userHunted:userHunted,showDialog: true });
     }
 
     render(){
@@ -110,14 +116,19 @@ export default class UsersToHuntList extends React.Component{
                         onSearch={this.onSearch.bind(this)}
                     />
                 )}
+                <Dialog visible={this.state.showDialog} 
+                        onTouchOutside={() => {this.setState({ showDialog: false });}}
+                        dialogAnimation={scaleAnimation}> 
+                    <DialogContent>
+                        <UserHuntedPopup userHunted={this.state.userHunted}/>
+                    </DialogContent>
+                </Dialog>
                 <ListView
                     style={this.getListViewStyle()}
                     key={this.props.usersToHunt}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
-                <PopupDialog ref={(ref) => { this.popupDialog = ref; }}> 
-                    <UserHuntedPopup style={styles.popup}/> 
-                </PopupDialog>
+                
                 
             </View>
 
@@ -131,3 +142,5 @@ UsersToHuntList.PropTypes = {
 }
 
 AppRegistry.registerComponent("WhoIs",()=>UsersToHuntList);
+
+// <UserHuntedPopup style={styles.popup}/> 

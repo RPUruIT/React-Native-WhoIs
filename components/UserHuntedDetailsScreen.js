@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     usersHuntedImage:{
+        marginTop:20,
         width: 160, height: 160, 
         borderRadius:120,
     },
